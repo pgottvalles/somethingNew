@@ -20,6 +20,10 @@ product_id, stock_qty, purchase_qty = customer_init.get_user_input()
 stock_init.update_product_stock_after_purchase(product_id, purchase_qty)
 
 print('\n#####################################################')
-print('#### - After the purchase the stock situation is:')
+print('#### - After the purchase the overall stock situation is:')
 list_of_dict_nice_display(cursor_list_dict(stock_init.get_current_stock()))
-print('#####################################################\n')
+print('#####################################################\n\n')
+
+print('Bye!')
+
+con.close()

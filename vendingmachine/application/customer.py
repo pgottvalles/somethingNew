@@ -54,12 +54,12 @@ class CustomerClass:
                 money_inserted_input = input("\nselect or add some amount of money to pay with: ")
                 money_inserted += float(money_inserted_input)
                 if money_inserted < purchase_price:
-                    print('\n### You havent given enough money')
+                    print("\n### You haven't given enough money")
                     print('### => Please add some more as you still need to pay {} euro(s).'.
                           format(float(purchase_price) - float(money_inserted)))
                 else:
-                    print('you have paid enough!')
-                    print('you will get back {} euro(s)'.
+                    print('\nyou have paid enough!')
+                    print('\n => you will get back {} euro(s)\n\n'.
                           format(float(money_inserted) - float(purchase_price)))
                     enough_money = True
                     money_due = float(money_inserted) - float(purchase_price)
