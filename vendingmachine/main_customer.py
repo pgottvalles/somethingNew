@@ -15,9 +15,9 @@ print('#### - The current stock situation is as follow:')
 list_of_dict_nice_display(cursor_list_dict(stock_init.get_current_stock()))
 print('#####################################################\n')
 
-maintenance_init = CustomerClass(con, product_init, stock_init)
-product_id, stock_qty, purchase_qty = maintenance_init.get_user_input()
-stock_init.update_product_stock_after_purchase(product_id, stock_qty, purchase_qty)
+customer_init = CustomerClass(con, product_init, stock_init)
+product_id, stock_qty, purchase_qty = customer_init.get_user_input()
+stock_init.update_product_stock_after_purchase(product_id, purchase_qty)
 
 print('\n#####################################################')
 print('#### - After the purchase the stock situation is:')

@@ -1,4 +1,4 @@
-from application.helper import cursor_list_dict, list_of_dict_nice_display
+from .helper import cursor_list_dict, list_of_dict_nice_display
 
 
 class MaintenanceClass:

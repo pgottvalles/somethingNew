@@ -1,4 +1,4 @@
-from application.helper import cursor_list_dict
+from .helper import cursor_list_dict
 
 
 class StockClass:
@@ -38,20 +38,23 @@ class StockClass:
             product_exist_in_table_flag = True
         return qty, product_exist_in_table_flag
 
-    def update_product_stock_after_purchase(self, product_id, qty_before_purchase, qty_purchased):
+    def update_product_stock_after_purchase(self, product_id, qty_purchased):
         """
         Updtae product stock quantity after purchase
         :param product_id: id of the product
-        :param qty_before_purchase: product quantity before purchase
         :param qty_purchased: purchased product quantity
         :return:
         """
-        cur = self.con.cursor()
-        updated_qty = qty_before_purchase - qty_purchased
-        cur.execute(
-            """update stocks
-            set qty = ?
-            where product_id = ?""",
-            (updated_qty, product_id))
-        self.con.commit()
-        print('The stock quantity of the given product has been updated. It is now: {}'.format(updated_qty))
+        current_qty, product_exist_in_table_flag = self.get_current_product_qty(product_id)
+        if product_exist_in_table_flag:
+            cur = self.con.cursor()
+            updated_qty = current_qty - qty_purchased
+            cur.execute(
+                """update stocks
+                set qty = ?
+                where product_id = ?""",
+                (updated_qty, product_id))
+            self.con.commit()
+            print('The stock quantity of the given product has been updated. It is now: {}'.format(updated_qty))
+        else:
+            raise ValueError('\n### The product id for which you are trying to update the stock doesnt exist')

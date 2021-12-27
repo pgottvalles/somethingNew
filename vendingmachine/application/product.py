@@ -1,4 +1,4 @@
-from application.helper import cursor_list_dict
+from .helper import cursor_list_dict
 
 
 class ProductClass:
