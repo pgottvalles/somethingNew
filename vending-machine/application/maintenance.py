@@ -17,7 +17,7 @@ class MaintenanceClass:
         for i in stock_list:
             product_name = i[0]
             qty = i[1]
-            product_id = self.product_init.get_product_id(product_name)
+            product_id, product_price = self.product_init.get_product_id(product_name)
             current_qty, product_exist_in_table_flag = self.stock_init.get_current_product_qty(product_id)
             if product_exist_in_table_flag:
                 cur.execute(
@@ -54,9 +54,7 @@ class MaintenanceClass:
                     "insert into products values (?, ?, ?)",
                     (max_product_id + 1, product_name, product_price))
             else:
-                print('updating product')
                 retreived_product_id = resp[0][0]
-                print(retreived_product_id)
                 cur.execute(
                     """update products
                     set product_name = ? ,
